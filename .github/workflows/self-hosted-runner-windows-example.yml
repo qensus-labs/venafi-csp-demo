@@ -13,11 +13,12 @@ jobs:
           venafi-csc-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/csc'
           venafi-auth-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/vedauth'
           venafi-hsm-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/vedhsm'
-          include-config: 'false'
+          include-config: 'true'
       - name: Display output values
         run: |
           echo "Output \"csp-driver-cached-path\" [${{steps.cspdriver.outputs.csp-driver-cached-path}}]"
           echo "Output \"csp-driver-cached-version\" [${{steps.cspdriver.outputs.csp-driver-cached-version}}]"
+          echo "Output \"csp-driver-cached-config\" [${{steps.cspdriver.outputs.csp-driver-cached-config}}]"
       - name: Check CSPDriver (version)
         run: |
           cspconfig.exe version
