@@ -1,0 +1,22 @@
+name: initial-configuration-linux
+on:
+  workflow_dispatch:
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+
+    permissions: {}
+
+    name: Example including initial configuration
+    steps:
+      - name: Setup Venafi CSP Driver
+        uses: qensus-labs/venafi-codesigning-wrapper-action@v0.9.1
+        with:
+          venafi-version: '24.1.0'
+          venafi-csc-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/csc'
+          venafi-auth-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/vedauth'
+          venafi-hsm-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/vedhsm'
+          include-config: 'true'
+      - name: Check Venafi CSP Driver (version)
+        run: pkcs11config --version
