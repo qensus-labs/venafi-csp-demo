@@ -8,16 +8,17 @@ jobs:
     steps:
       - name: Setup CSPDriver
         id: cspdriver
-        uses: qensus-labs/venafi-codesigning-wrapper-action@v0.9.1
+        uses: qensus-labs/venafi-codesigning-wrapper-action@v0.9.2
         with:
           venafi-csc-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/csc'
           venafi-auth-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/vedauth'
           venafi-hsm-url: 'https://uvo1gm8xtvysk75eax6.env.cloudshare.com/vedhsm'
-          include-config: 'false'
+          include-config: 'true'
       - name: Display output values
         run: |
           echo "Output \"csp-driver-cached-path\" [${{steps.cspdriver.outputs.csp-driver-cached-path}}]"
           echo "Output \"csp-driver-cached-version\" [${{steps.cspdriver.outputs.csp-driver-cached-version}}]"
+          echo "Output \"csp-driver-cached-config\" [${{steps.cspdriver.outputs.csp-driver-cached-config}}]"
       - name: Check CSPDriver (version)
         run: |
           pkcs11config --version
